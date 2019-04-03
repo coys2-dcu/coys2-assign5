@@ -1,3 +1,28 @@
 <resources>
     <string name="app_name">SchoolComms</string>
+    <string name="homeScreenButton1">Intercom</string>
+    <string name="HomeScreenButton2">Daily Notes</string>
+    <string name="HomeScreenButton3">IT Support</string>
+    <string name="HomeScreenButton4">Book Room</string>
+    <string name="intercomTextView1">Intercom Announcements</string>
+    <string name="intercomEditText1">Name</string>
+    <string name="intercomTextView2">Create an Announcement</string>
+    <string name="intercomEditText2">Announcement</string>
+    <string name="radioButton2">9-11</string>
+    <string name="radioButton3">11-1</string>
+    <string name="radioButton4">2-4</string>
+    <string name="teacher_name">Name</string>
+    <string name="intercom_message_1">Please find my Intercom Announcement attached.</string>
+    <string name="intercom_message_instructions">Please announce this message at </string>
+    <string name="intercom_message_end">Regards</string>
+    <string name="teacher_name_blank">You did not enter your name.</string>
+    <string name="time_selection_blank">You did not select a time.</string>
+    <string name="announcement_blank">You did not enter an address.</string>
+    <string name="notification_title">Notification!</string>
+    <string name="to_email">mrprincipal@cbs.ie</string>
+    <string name="email_subject">Intercom Announcement Request </string>
+    <string name="textViewDailyNotes1">Daily Notes</string>
+    <string name="textViewDailyNotes2">Create a Note</string>
+    <string name="dailyNotesEmailButton">Send Note</string>
+    <string name="intercomSendButton">Send Announcement</string>
 </resources>
