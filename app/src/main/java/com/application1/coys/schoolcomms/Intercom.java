@@ -55,7 +55,7 @@ public class Intercom extends AppCompatActivity {
 
     }
 
-    public void sendEmail(View v) {
+    public void sendAnnouncementEmail(View v) {
 
 
         String teacherName = mTeacherName.getText().toString();
@@ -64,16 +64,15 @@ public class Intercom extends AppCompatActivity {
 
         }
 
-        else if (choice.matches("")) {
-                Toast.makeText(this, getString(R.string.time_selection_blank), Toast.LENGTH_SHORT).show();
 
 
-        } else {
+
+         else {
             Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setType("*/*");
 
             intent.putExtra(Intent.EXTRA_EMAIL, new String[]{getString(R.string.to_email)});
-            intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_subject));
+            intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_subject_intercom));
             intent.putExtra(Intent.EXTRA_TEXT, createIntercomSummary());
 
             if (intent.resolveActivity(getPackageManager()) != null) {

@@ -20,9 +20,14 @@
     <string name="announcement_blank">You did not enter an address.</string>
     <string name="notification_title">Notification!</string>
     <string name="to_email">mrprincipal@cbs.ie</string>
-    <string name="email_subject">Intercom Announcement Request </string>
+    <string name="email_subject_intercom">Intercom Announcement Request </string>
+    <string name="email_subject_notes">Daily Notes Request </string>
     <string name="textViewDailyNotes1">Daily Notes</string>
     <string name="textViewDailyNotes2">Create a Note</string>
     <string name="dailyNotesEmailButton">Send Note</string>
     <string name="intercomSendButton">Send Announcement</string>
+    <string name="dailyNotesEditNote">Note</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="send_button_label">Send</string>
+    <string name="default_web_client_id">481396556193-m5e0c964dlb1v53mk96m34kr7nkfm8tt.apps.googleusercontent.com</string>
 </resources>

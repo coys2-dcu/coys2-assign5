@@ -17,7 +17,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".Intercom" />
-        <activity android:name=".DailyNotes"></activity>
+        <activity android:name=".DailyNotes" />
+        <activity android:name=".ITsupport" />
+        <activity android:name=".MessageAdapter" />
+        <activity android:name=".FriendlyMessage"></activity>
     </application>
 
 </manifest>

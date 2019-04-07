@@ -1,0 +1,44 @@
+{
+  "project_info": {
+    "project_number": "481396556193",
+    "firebase_url": "https://assign5-7fffb.firebaseio.com",
+    "project_id": "assign5-7fffb",
+    "storage_bucket": "assign5-7fffb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:481396556193:android:ac6d0471fc3a29bf",
+        "android_client_info": {
+          "package_name": "com.application1.coys.schoolcomms"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "481396556193-j8d2panpn3nm2qtacaqfmjnvn3gihnj8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.application1.coys.schoolcomms",
+            "certificate_hash": "0681c21210cc9d6442f8c8d6f6b8b2b5c3a979fb"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBq9BLUfVgjcNGd-mUPmIjxjz-3ShNmQDo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "481396556193-m5e0c964dlb1v53mk96m34kr7nkfm8tt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
