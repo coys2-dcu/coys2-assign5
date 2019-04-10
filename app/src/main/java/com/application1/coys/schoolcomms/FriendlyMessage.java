@@ -1,16 +1,15 @@
 package com.application1.coys.schoolcomms;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-
 public class FriendlyMessage {
 
     private String text;
     private String name;
     private String photoUrl;
 
+
     public FriendlyMessage() {
     }
+
 
     public FriendlyMessage(String text, String name, String photoUrl) {
         this.text = text;

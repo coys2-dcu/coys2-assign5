@@ -2,9 +2,6 @@ package com.application1.coys.schoolcomms;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputFilter;
@@ -19,10 +16,8 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -30,13 +25,16 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.annotations.Nullable;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class ITsupport extends AppCompatActivity {
 
@@ -87,7 +85,6 @@ public class ITsupport extends AppCompatActivity {
         // Initialize progress bar
         mProgressBar.setVisibility(ProgressBar.INVISIBLE);
          //ImagePickerButton shows an image picker to upload a image for a message
-        // ImagePickerButton shows an image picker to upload a image for a message
         mPhotoPickerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -209,26 +206,75 @@ public class ITsupport extends AppCompatActivity {
                 // Sign in was canceled by the user, finish the activity
                 Toast.makeText(this, "Sign in canceled", Toast.LENGTH_SHORT).show();
                 finish();
-            } else if (requestCode ==RC_PHOTO_PICKER && resultCode == RESULT_OK){
-                Uri selectedImageUri = data.getData();
-               //get ref to store file at chat_photos/filename
-                StorageReference photoRef =
-                        mChatPhotosStorageReference.child(selectedImageUri.getLastPathSegment());
-                //upload file to storage
-                photoRef.putFile(selectedImageUri).addOnSuccessListener(this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                Task<Uri> urlTask = taskSnapshot.getStorage().getDownloadUrl();
-                                while (!urlTask.isSuccessful()) ;
-                                Uri downloadUrl = urlTask.getResult();
-                                FriendlyMessage friendlyMessage = new FriendlyMessage(null, mUsername, downloadUrl.toString());
+            } else if (requestCode == RC_PHOTO_PICKER && resultCode == RESULT_OK) {
+                uploadPhotoInFirebase(data);
 
-                        // Set the download URL to the message box, so that the user can send it to the database
-                        mMessagesDatabaseReference.push().setValue(friendlyMessage);
-                    }
-                });
             }
         }
     }
+        private void uploadPhotoInFirebase(@Nullable Intent data) {
+
+           /*  Uri file = data.getData();
+
+// Create the file metadata
+            StorageMetadata metadata = new StorageMetadata.Builder()
+                    .setContentType("image/jpeg")
+                    .build();
+
+// Upload file and metadata to the path 'images/mountains.jpg'
+            UploadTask uploadTask = mChatPhotosStorageReference.child("chat_photos/" + file.getLastPathSegment()).putFile(file, metadata);
+
+// Listen for state changes, errors, and completion of the upload.
+            uploadTask.addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                    double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+                    System.out.println("Upload is " + progress + "% done");
+                }
+            }).addOnPausedListener(new OnPausedListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onPaused(UploadTask.TaskSnapshot taskSnapshot) {
+                    System.out.println("Upload is paused");
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    // Handle unsuccessful uploads
+                }
+            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    // Handle successful uploads on complete
+                    // ...
+                }
+            }); */
+           Uri selectedImageUri = data.getData();
+
+            // Get a reference to store file at chat_photos/<FILENAME>
+            final StorageReference photoRef = mChatPhotosStorageReference
+                    .child(selectedImageUri.getLastPathSegment());
+
+            // Upload file to Firebase Storage
+            photoRef.putFile(selectedImageUri)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                            // Download file From Firebase Storage
+                            photoRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri downloadPhotoUrl) {
+                                    //Now play with downloadPhotoUrl
+                                    //Store data into Firebase Realtime Database
+                                    FriendlyMessage friendlyMessage = new FriendlyMessage
+                                            (null, mUsername, downloadPhotoUrl.toString());
+                                    mMessagesDatabaseReference.push().setValue(friendlyMessage);
+                                }
+                            });
+                        }
+                    });
+        }
+
     private void onSignedInInitialize(String username) {
         mUsername = username;
         attachDatabaseReadListener();
