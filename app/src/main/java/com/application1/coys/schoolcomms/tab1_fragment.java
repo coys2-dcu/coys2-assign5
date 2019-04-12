@@ -1,9 +1,11 @@
 package com.application1.coys.schoolcomms;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.google.firebase.database.annotations.Nullable;
 
@@ -17,9 +19,27 @@ public class tab1_fragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
-        View view = inflater.inflate(R.layout.fragment_tab1_fragment, container, false);
-        return view;
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View root = inflater.inflate(R.layout.fragment_tab1_fragment, container, false);
+
+        Button gs = (Button) root.findViewById(R.id.gs);
+        gs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gsheet();
+            }
+        });
+
+            return root;
+        }
+
+
+  public void gsheet() {
+      // Do something in response to button
+      Intent intent = new Intent(getContext(), googleSheet.class);
+      startActivity(intent);
+        }
     }
 
-}
+
+

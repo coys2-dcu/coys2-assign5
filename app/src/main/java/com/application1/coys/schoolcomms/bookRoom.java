@@ -42,7 +42,7 @@ public class bookRoom extends AppCompatActivity {
         adapter.addFragment(new tab1_fragment(), "Timetables");
         adapter.addFragment(new tab2_fragment(), "Book");
         adapter.addFragment(new tab3_fragment(), "View Bookings");
-        adapter.addFragment(new tab4_fragment(), "");
+        adapter.addFragment(new tab4_fragment(), "Test");
         viewPager.setAdapter(adapter);
     }
 
