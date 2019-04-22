@@ -39,10 +39,9 @@ public class bookRoom extends AppCompatActivity {
     }
     private void setupViewPager(ViewPager viewPager){
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
-        adapter.addFragment(new tab1_fragment(), "Timetables");
-        adapter.addFragment(new tab2_fragment(), "Book");
-        adapter.addFragment(new tab3_fragment(), "View Bookings");
-        adapter.addFragment(new tab4_fragment(), "Test");
+        adapter.addFragment(new tab1_fragment(), "Room1");
+        adapter.addFragment(new tab2_fragment(), "Room2");
+        adapter.addFragment(new tab3_fragment(), "Room3");
         viewPager.setAdapter(adapter);
     }
 

@@ -30,16 +30,29 @@ public class tab1_fragment extends Fragment {
             }
         });
 
+        Button AddItem = (Button)root.findViewById(R.id.btn_add_item1);
+        AddItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                googleSheet1();
+            }
+        });
+
             return root;
-        }
+    }
 
-
-  public void gsheet() {
+    public void gsheet() {
       // Do something in response to button
       Intent intent = new Intent(getContext(), googleSheet.class);
       startActivity(intent);
         }
+
+    public void googleSheet1() {
+
+        Intent intent = new Intent(getContext(),AddItem.class);
+        startActivity(intent);
     }
+}
 
 
 

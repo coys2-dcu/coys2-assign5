@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -16,7 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".googleSheet"></activity>
+        <activity android:name=".calendar_activity"></activity>
+        <activity android:name=".googleSheet" />
         <activity
             android:name=".bookRoom"
             android:label="@string/title_activity_book_room"
@@ -33,7 +34,7 @@
         <activity android:name=".ITsupport" />
         <activity android:name=".MessageAdapter" />
         <activity android:name=".FriendlyMessage" />
-        <activity android:name=".AddItem"/>
+        <activity android:name=".AddItem" />
     </application>
 
 </manifest>
