@@ -48,7 +48,7 @@ public class Intercom extends AppCompatActivity {
 
         String intercomAnnouncement = getString(R.string.teacher_name) + " " + mTeacherName.getText().toString();
         intercomAnnouncement  += "\n" + "\n" + getString(R.string.intercom_message_1);
-        intercomAnnouncement  += "\n" + "Announcement :" + meditAnnouncement.getText().toString();
+        intercomAnnouncement  += "\n" + "Announcement: " + meditAnnouncement.getText().toString();
         intercomAnnouncement  += "\n" + "I would like the announcement to be made between " + choice;
         intercomAnnouncement  += "\n" + getString(R.string.intercom_message_end) + "\n" + mTeacherName.getText().toString();
         return intercomAnnouncement;

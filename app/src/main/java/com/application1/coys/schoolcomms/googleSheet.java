@@ -352,16 +352,16 @@ public class googleSheet extends MainActivity
          */
         private List<String> getDataFromApi() throws IOException {
             String spreadsheetId = "1Rj9IneK-4jw_5XMRqT-bNQk33Cj_iXuXUXr_skqF3Pw";
-            String range = "Items!A2:D";
+            String range = "Items!A2:F";
             List<String> results = new ArrayList<String>();
             ValueRange response = this.mService.spreadsheets().values()
                     .get(spreadsheetId, range)
                     .execute();
             List<List<Object>> values = response.getValues();
             if (values != null) {
-                results.add("ID, Brand");
+                results.add("Date Added,Name,Booking Date,Time,Room");
                 for (List row : values) {
-                    results.add(row.get(0) + ", " + row.get(3));
+                    results.add(row.get(0) + ", " + row.get(1)+ ", " + row.get(2)+ ", " + row.get(3) +", " + row.get(4)+", " + row.get(5));
                 }
             }
             return results;

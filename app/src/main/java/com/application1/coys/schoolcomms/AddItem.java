@@ -27,7 +27,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class AddItem extends AppCompatActivity implements View.OnClickListener {
 
 
-    EditText editTextItemName,editTextBrand;
+    EditText editTextUserName,editTextBookDate,editTextTime,editTextRoom;
     Button buttonAddItem;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,8 +35,10 @@ public class AddItem extends AppCompatActivity implements View.OnClickListener {
 
         setContentView(R.layout.add_item);
 
-        editTextItemName = (EditText)findViewById(R.id.et_item_name);
-        editTextBrand = (EditText)findViewById(R.id.et_brand);
+        editTextUserName = (EditText)findViewById(R.id.et_user_name);
+        editTextBookDate = (EditText)findViewById(R.id.et_book_date);
+        editTextTime = (EditText)findViewById(R.id.et_Time);
+        editTextRoom = (EditText)findViewById(R.id.et_Room);
 
         buttonAddItem = (Button)findViewById(R.id.btn_add_item);
         buttonAddItem.setOnClickListener(this);
@@ -49,8 +51,10 @@ public class AddItem extends AppCompatActivity implements View.OnClickListener {
     private void   addItemToSheet() {
 
         final ProgressDialog loading = ProgressDialog.show(this,"Adding Item","Please wait");
-        final String name = editTextItemName.getText().toString().trim();
-        final String brand = editTextBrand.getText().toString().trim();
+        final String name = editTextUserName.getText().toString().trim();
+        final String bdate = editTextBookDate.getText().toString().trim();
+        final String time = editTextTime.getText().toString().trim();
+        final String room = editTextRoom.getText().toString().trim();
 
 
 
@@ -80,8 +84,10 @@ public class AddItem extends AppCompatActivity implements View.OnClickListener {
 
                 //here we pass params
                 parmas.put("action","addItem");
-                parmas.put("itemName",name);
-                parmas.put("brand",brand);
+                parmas.put("name",name);
+                parmas.put("bdate",bdate);
+                parmas.put("time",time);
+                parmas.put("room",room);
 
                 return parmas;
             }

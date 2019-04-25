@@ -8,6 +8,7 @@
 
     <Button
         android:id="@+id/callApiButton"
+        style="@style/FirebaseUI.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -28,7 +29,9 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="TextView"
+
+        android:text="@string/google_sheet_textview"
+        android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
         app:layout_constraintBottom_toTopOf="@+id/callApiButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

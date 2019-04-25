@@ -30,7 +30,6 @@ public class bookRoom extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_room);
-
         msectionsPageAdpater =  new SectionsPageAdapter(getSupportFragmentManager());
         mViewPager = (ViewPager) findViewById(R.id.container);
         setupViewPager(mViewPager);

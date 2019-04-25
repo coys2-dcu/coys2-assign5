@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -17,7 +18,10 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -65,6 +69,7 @@ public class ITsupport extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_itsupport);
+        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
         mUsername = ANONYMOUS;
         // Initialize Firebase components
         mFirebaseDatabase = FirebaseDatabase.getInstance();
@@ -205,14 +210,36 @@ public class ITsupport extends AppCompatActivity {
             } else if (resultCode == RESULT_CANCELED) {
                 // Sign in was canceled by the user, finish the activity
                 Toast.makeText(this, "Sign in canceled", Toast.LENGTH_SHORT).show();
-                finish();
+                finish(); }
             } else if (requestCode == RC_PHOTO_PICKER && resultCode == RESULT_OK) {
-                uploadPhotoInFirebase(data);
 
-            }
+            Uri selectedImageUri = data.getData();
+            StorageReference photoRef = mChatPhotosStorageReference.child(selectedImageUri.getLastPathSegment());
+            UploadTask uploadTask = mChatPhotosStorageReference.putFile(selectedImageUri);
+
+            Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                @Override
+                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                    if (!task.isSuccessful()) {
+                        throw task.getException();
+                    }
+
+                    // Continue with the task to get the download URL
+                    return mChatPhotosStorageReference.getDownloadUrl();
+                }
+            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                @Override
+                public void onComplete(@NonNull Task<Uri> task) {
+                    if (task.isSuccessful()) {
+                        Uri downloadUri = task.getResult();
+                        FriendlyMessage friendlyMessage = new FriendlyMessage
+                                (null, mUsername, downloadUri.toString());
+                        mMessagesDatabaseReference.push().setValue(friendlyMessage);
+                    }
+                }
+            });
+
         }
-    }
-        private void uploadPhotoInFirebase(@Nullable Intent data) {
 
            /*  Uri file = data.getData();
 
@@ -248,7 +275,7 @@ public class ITsupport extends AppCompatActivity {
                     // ...
                 }
             }); */
-           Uri selectedImageUri = data.getData();
+           /*Uri selectedImageUri = data.getData();
 
             // Get a reference to store file at chat_photos/<FILENAME>
             final StorageReference photoRef = mChatPhotosStorageReference
@@ -272,7 +299,7 @@ public class ITsupport extends AppCompatActivity {
                                 }
                             });
                         }
-                    });
+                    });*/
         }
 
     private void onSignedInInitialize(String username) {

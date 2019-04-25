@@ -13,13 +13,14 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".calendar_activity"></activity>
-        <activity android:name=".googleSheet" />
+
+        <activity android:name=".googleSheet" android:parentActivityName = ".MainActivity"  />
         <activity
             android:name=".bookRoom"
+            android:parentActivityName = ".MainActivity"
             android:label="@string/title_activity_book_room"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MainActivity">
@@ -29,12 +30,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Intercom" />
-        <activity android:name=".DailyNotes" />
-        <activity android:name=".ITsupport" />
+        <activity android:name=".Intercom" android:parentActivityName = ".MainActivity" />
+        <activity android:name=".DailyNotes" android:parentActivityName = ".MainActivity" />
+        <activity android:name=".ITsupport" android:parentActivityName = ".MainActivity" />
         <activity android:name=".MessageAdapter" />
-        <activity android:name=".FriendlyMessage" />
-        <activity android:name=".AddItem" />
+        <activity android:name=".FriendlyMessage"  />
+        <activity android:name=".AddItem" android:parentActivityName = ".bookRoom"/>
     </application>
 
 </manifest>

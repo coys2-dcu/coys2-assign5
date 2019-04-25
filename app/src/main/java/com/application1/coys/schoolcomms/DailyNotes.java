@@ -47,8 +47,8 @@ public class DailyNotes extends AppCompatActivity {
     private String createDailyNoteSummary() {
 
         String dailyNote = getString(R.string.teacher_name) + " " + mTeacherName.getText().toString();
-        dailyNote += "\n" + "\n" + getString(R.string.intercom_message_1);
-        dailyNote+= "\n" + "Note :" + meditNote.getText().toString();
+        dailyNote += "\n" + "\n" + getString(R.string.daily_notes_message_1);
+        dailyNote+= "\n" + "Note : " + meditNote.getText().toString();
         dailyNote  += "\n" + "I would like the note to be added on " + date ;
         dailyNote += "\n" + getString(R.string.intercom_message_end) + "\n" + mTeacherName.getText().toString();
         return dailyNote;
