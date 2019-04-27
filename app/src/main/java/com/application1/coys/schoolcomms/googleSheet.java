@@ -12,13 +12,9 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.text.method.ScrollingMovementMethod;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -31,12 +27,10 @@ import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.client.util.ExponentialBackOff;
 import com.google.api.services.sheets.v4.SheetsScopes;
 import com.google.api.services.sheets.v4.model.ValueRange;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import androidx.annotation.NonNull;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
@@ -52,14 +46,14 @@ public class googleSheet extends MainActivity
     static final int REQUEST_AUTHORIZATION = 1001;
     static final int REQUEST_GOOGLE_PLAY_SERVICES = 1002;
     static final int REQUEST_PERMISSION_GET_ACCOUNTS = 1003;
-
-    private static final String BUTTON_TEXT = "Call Google Sheets API";
     private static final String PREF_ACCOUNT_NAME = "accountName";
     private static final String[] SCOPES = { SheetsScopes.SPREADSHEETS_READONLY };
 
     /**
-     * Create the main activity.
+     * this activity displays the content of the google sheet used for booking computer rooms
      * @param savedInstanceState previously saved instance data.
+     * Class (or Method) contains code adapted from URL:
+     * https://developers.google.com/sheets/quickstart/android?hl=es-419 Permission:  Apache License. Retrieved on: April 2019
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,20 +61,7 @@ public class googleSheet extends MainActivity
         setContentView(R.layout.activity_google_sheet);
         mCallApiButton = findViewById(R.id.callApiButton);
         mOutputText = findViewById(R.id.outputText);
-        //LinearLayout activityLayout = new LinearLayout(this);
-        //LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-        //LinearLayout.LayoutParams.MATCH_PARENT,
-        //LinearLayout.LayoutParams.MATCH_PARENT);
-       // activityLayout.setLayoutParams(lp);
-        //activityLayout.setOrientation(LinearLayout.VERTICAL);
-        //activityLayout.setPadding(16, 16, 16, 16);
 
-        //ViewGroup.LayoutParams tlp = new ViewGroup.LayoutParams(
-        //ViewGroup.LayoutParams.WRAP_CONTENT,
-        // ViewGroup.LayoutParams.WRAP_CONTENT);
-
-        //mCallApiButton = new Button(this);
-       // mCallApiButton.setText(BUTTON_TEXT);
         mCallApiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,21 +71,9 @@ public class googleSheet extends MainActivity
                 mCallApiButton.setEnabled(true);
             }
         });
-        //activityLayout.addView(mCallApiButton);
-
-        //mOutputText = new TextView(this);
-        //mOutputText.setLayoutParams(tlp);
-        //mOutputText.setPadding(16, 16, 16, 16);
-        //mOutputText.setVerticalScrollBarEnabled(true);
-       // mOutputText.setMovementMethod(new ScrollingMovementMethod());
-        mOutputText.setText(
-                "Click the button to test the API.");
-        //activityLayout.addView(mOutputText);
 
         mProgress = new ProgressDialog(this);
         mProgress.setMessage("Calling Google Sheets API ...");
-
-        //setContentView(activityLayout);
 
         // Initialize credentials and service object.
         mCredential = GoogleAccountCredential.usingOAuth2(
@@ -113,10 +82,10 @@ public class googleSheet extends MainActivity
     }
 
 
-
     /**
      * Attempt to call the API, after verifying that all the preconditions are
-     * satisfied. The preconditions are: Google Play Services installed, an
+     * satisfied.
+     * The preconditions are: Google Play Services installed, an
      * account was selected and the device currently has online access. If any
      * of the preconditions are not satisfied, the app will prompt the user as
      * appropriate.
@@ -127,7 +96,7 @@ public class googleSheet extends MainActivity
         } else if (mCredential.getSelectedAccountName() == null) {
             chooseAccount();
         } else if (! isDeviceOnline()) {
-            mOutputText.setText("No network connection available.");
+            mOutputText.setText(R.string.noConnection);
         } else {
             new MakeRequestTask(mCredential).execute();
         }
@@ -186,8 +155,8 @@ public class googleSheet extends MainActivity
             case REQUEST_GOOGLE_PLAY_SERVICES:
                 if (resultCode != RESULT_OK) {
                     mOutputText.setText(
-                            "This app requires Google Play Services. Please install " +
-                                    "Google Play Services on your device and relaunch this app.");
+                            getString(R.string.GoogleServicesrequired) +
+                                    getString(R.string.install));
                 } else {
                     getResultsFromApi();
                 }
@@ -379,7 +348,7 @@ public class googleSheet extends MainActivity
         protected void onPostExecute(List<String> output) {
             mProgress.hide();
             if (output == null || output.size() == 0) {
-                mOutputText.setText("No results returned.");
+                mOutputText.setText(R.string.noresults);
             } else {
                 output.add(0, "Data retrieved using the Google Sheets API:");
                 mOutputText.setText(TextUtils.join("\n", output));
@@ -399,11 +368,11 @@ public class googleSheet extends MainActivity
                             ((UserRecoverableAuthIOException) mLastError).getIntent(),
                             googleSheet.REQUEST_AUTHORIZATION);
                 } else {
-                    mOutputText.setText("The following error occurred:\n"
+                    mOutputText.setText(getString(R.string.onCancelError)
                             + mLastError.getMessage());
                 }
             } else {
-                mOutputText.setText("Request cancelled.");
+                mOutputText.setText(R.string.requestCancelled);
             }
         }
     }

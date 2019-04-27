@@ -7,14 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-
+/**
+ * third fragment to computer room 3
+ */
 public class tab3_fragment extends Fragment {
 
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    // the fragment initialization parameters,
     private static final String TAG = "Tab3Fragment";
     private Context mContext;
     Button buttonAddItem;
@@ -44,8 +45,6 @@ public class tab3_fragment extends Fragment {
         return root;
     }
 
-
-
     public void googleSheet1() {
 
             Intent intent = new Intent(getContext(),AddItem.class);
@@ -58,7 +57,7 @@ public class tab3_fragment extends Fragment {
         startActivity(intent);
     }
 
-    }
+}
 
 
 

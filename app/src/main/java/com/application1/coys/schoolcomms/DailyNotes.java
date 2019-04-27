@@ -8,9 +8,11 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * This activity allows the user to send a note using an email intent
+ */
 public class DailyNotes extends AppCompatActivity {
     EditText mTeacherName;
     EditText meditNote;
@@ -35,6 +37,13 @@ public class DailyNotes extends AppCompatActivity {
         mCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener()
 
         {
+            /**
+             * sets the date from the calender view when the user has selected one
+             * @param CalendarView
+             * @param year
+             * @param month
+             * @param dayOfMonth
+             */
             @Override
             public void onSelectedDayChange(CalendarView CalendarView, int year, int month, int dayOfMonth) {
                 date = dayOfMonth + "/" + month + "/" + year;
@@ -43,7 +52,10 @@ public class DailyNotes extends AppCompatActivity {
         });
     }
 
-
+    /**
+     * creates the email content
+     * @return body message
+     */
     private String createDailyNoteSummary() {
 
         String dailyNote = getString(R.string.teacher_name) + " " + mTeacherName.getText().toString();
@@ -56,8 +68,11 @@ public class DailyNotes extends AppCompatActivity {
 
     }
 
+    /**
+     * send the email and populate fields
+     * @param v
+     */
     public void sendEmail(View v) {
-
 
         String teacherName = mTeacherName.getText().toString();
         if (teacherName.matches("")) {

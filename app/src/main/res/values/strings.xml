@@ -53,5 +53,28 @@
     <string name="add_item_explanation">Room bookings cannot be guaranteed. You will receive an email confirmation once your request has been processed.</string>
     <string name="add_item_button">Send Request</string>
     <string name="google_sheet_textview">Click the button to view requested bookings.</string>
+    <string name="onCancelError">The following error occurred:</string>
+    <string name="requestCancelled">Request cancelled.</string>
+    <string name="noresults">No results returned.</string>
+    <string name="GoogleServicesrequired">This app requires Google Play Services. Please install</string>
+    <string name="install">Google Play Services on your device and relaunch this app.</string>
+    <string name="noConnection">No network connection available.</string>
+    <string name="school_logo">school logo</string>
+    <string name="intercom_logo">intercom logo</string>
+    <string name="daily_notes_logo">daily notes logo</string>
+    <string name="it_support_icon">it support icon</string>
+    <string name="book_room_icon">book room icon</string>
+    <string name="enter_your_name">Enter Your Name</string>
+    <string name="enter_note">Enter Note</string>
+    <string name="enter_your_name">Enter Your Name</string>
+    <string name="enter_your_announcement">Enter Your Announcement</string>
+    <string name="_9_11">9-11</string>
+    <string name="_11_1">11-1</string>
+    <string name="_2_4">2-4</string>
+    <string name="mondaytt">mondaytt</string>
+    <string name="friday_tt">friday tt</string>
+    <string name="thursday_tt">thursday tt</string>
+    <string name="wednesday_tt">wednesday tt</string>
+    <string name="tuesday_tt">tuesday tt</string>
 
 </resources>

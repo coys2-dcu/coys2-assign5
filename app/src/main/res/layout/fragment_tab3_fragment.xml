@@ -66,6 +66,7 @@
                 android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:contentDescription="@string/mondaytt"
                 android:src="@drawable/monday2" />
 
             <ImageView
@@ -73,6 +74,7 @@
                 android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:contentDescription="@string/tuesday_tt"
                 android:src="@drawable/tuesday2" />
 
             <ImageView
@@ -80,6 +82,7 @@
                 android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:contentDescription="@string/wednesday_tt"
                 android:src="@drawable/wednesday2" />
 
             <ImageView
@@ -87,6 +90,7 @@
                 android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:contentDescription="@string/thursday_tt"
                 android:src="@drawable/thursday2" />
 
             <ImageView
@@ -94,6 +98,7 @@
                 android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:contentDescription="@string/friday_tt"
                 android:src="@drawable/friday2" />
 
 

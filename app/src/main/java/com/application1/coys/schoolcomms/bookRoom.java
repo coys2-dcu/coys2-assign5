@@ -21,11 +21,16 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+/**
+ * book room activity where the user can view timetables and book a computer room
+ */
 public class bookRoom extends AppCompatActivity {
 
     private static final String TAG = "Book Room";
     private SectionsPageAdapter msectionsPageAdpater;
     private ViewPager mViewPager;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +41,11 @@ public class bookRoom extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout)findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
     }
+
+    /**
+     * create fragments
+     * @param viewPager
+     */
     private void setupViewPager(ViewPager viewPager){
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
         adapter.addFragment(new tab1_fragment(), "Room1");

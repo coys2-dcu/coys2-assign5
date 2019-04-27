@@ -9,10 +9,12 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 
-
+/**
+ * This class is the intercom activity.
+ * Uses edit text fields and radio buttons to generate an email
+ */
 public class Intercom extends AppCompatActivity {
 
         EditText mTeacherName;
@@ -21,9 +23,11 @@ public class Intercom extends AppCompatActivity {
         RadioButton radioButton2;
         String choice;
 
-
-
-        @Override
+    /**
+     *
+     * @param savedInstanceState bundle saving state
+     */
+    @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_intercom);
@@ -35,6 +39,10 @@ public class Intercom extends AppCompatActivity {
             getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);//https://www.youtube.com/watch?v=EBRXkictWss
         }
 
+    /**
+     * creates email summary
+     * @return email body message
+     */
     private String createIntercomSummary() {
         radioGroup1 = findViewById(R.id.radioGroup);
 
@@ -56,17 +64,16 @@ public class Intercom extends AppCompatActivity {
 
     }
 
+    /**
+     * launches email intent if user has inputted fields
+     * @param v
+     */
     public void sendAnnouncementEmail(View v) {
-
 
         String teacherName = mTeacherName.getText().toString();
         if (teacherName.matches("")) {
             Toast.makeText(this, getString(R.string.teacher_name_blank), Toast.LENGTH_SHORT).show();
-
         }
-
-
-
 
          else {
             Intent intent = new Intent(Intent.ACTION_SEND);

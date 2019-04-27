@@ -9,7 +9,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,14 +22,18 @@ import com.google.firebase.database.annotations.Nullable;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
-import java.lang.reflect.Array;
 import java.util.Arrays;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import static com.application1.coys.schoolcomms.ITsupport.ANONYMOUS;
+
+
+ /**
+ * @author Stephen Coy
+ * @version 1.0
+  * Class (or Method) contains code adapted from URL:
+  *  https://firebase.google.com/docs/android/setup
+ */
 
 public class MainActivity extends AppCompatActivity {
     private static final int RC_PHOTO_PICKER = 2;
@@ -43,6 +46,12 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference mMessagesDatabaseReference;
     private StorageReference mChatPhotosStorageReference;
     private FirebaseStorage mFirebaseStorage;
+
+     /**
+      * Main Activity of application
+      * @param savedInstanceState bundle containing state information
+      */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,8 +64,15 @@ public class MainActivity extends AppCompatActivity {
         mMessagesDatabaseReference = mFirebaseDatabase.getReference().child("messages");
         mChatPhotosStorageReference = mFirebaseStorage.getReference().child("chat_photos");
 
+
+
         Button icom = (Button) findViewById(R.id.intercomButton);
         icom.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             * Onclick to start intercom activity
+             * @param v
+             */
             @Override
             public void onClick(View v) {
                 intercom();
@@ -65,6 +81,11 @@ public class MainActivity extends AppCompatActivity {
 
         Button notes = (Button) findViewById(R.id.dNotesButton);
         notes.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             * Onclick to start Daily Notes activity
+             * @param v
+             */
             @Override
             public void onClick(View v) {
                 DailyNotes();
@@ -73,6 +94,11 @@ public class MainActivity extends AppCompatActivity {
 
         Button itsupport = (Button) findViewById(R.id.itButton);
         itsupport.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             * Onclick to start IT Support activity
+             * @param v
+             */
             @Override
             public void onClick(View v) {
                 itSupport();
@@ -81,6 +107,11 @@ public class MainActivity extends AppCompatActivity {
 
         Button ibook = (Button) findViewById(R.id.bookButton);
         ibook.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Onclick to start book room activity
+             * @param v
+             */
+
             @Override
             public void onClick(View v) {
                 bookRoom();
@@ -88,6 +119,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
+            /**
+             * This method checks for if the user is signed in
+              * @param firebaseAuth
+             */
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
@@ -114,6 +149,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+     /**
+      * on pause - detach database listener
+      */
     @Override
     protected void onPause() {
         super.onPause();
@@ -124,6 +162,12 @@ public class MainActivity extends AppCompatActivity {
         detachDatabaseReadListener();
     }
 
+     /**
+      * on activity result  for sign in
+      * @param requestCode
+      * @param resultCode
+      * @param data
+      */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -142,6 +186,11 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+     /**
+      * uploading photo to firebase storage
+      * @param data
+      */
     private void uploadPhotoInFirebase(@Nullable Intent data) {
         Uri selectedImageUri = data.getData();
 
@@ -157,6 +206,11 @@ public class MainActivity extends AppCompatActivity {
 
                         // Download file From Firebase Storage
                         photoRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+
+                            /**
+                             * download photo URI for message
+                             * @param downloadPhotoUrl
+                             */
                             @Override
                             public void onSuccess(Uri downloadPhotoUrl) {
                                 //Now play with downloadPhotoUrl
@@ -170,6 +224,11 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
+     /**
+      * infalte menu for sign out option
+      * @param menu
+      * @return sign out option
+      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -192,6 +251,7 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         mFirebaseAuth.addAuthStateListener(mAuthStateListener);
     }
+
 
     public void intercom() {
         // Do something in response to button
@@ -220,17 +280,27 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+     /**
+      * set username when signed in
+      * @param username
+      */
     private void onSignedInInitialize(String username) {
         mUsername = username;
         attachDatabaseReadListener();
     }
 
+     /**
+      * detach database and cleanup once signed out
+      */
     private void onSignedOutCleanup() {
         mUsername = ANONYMOUS;
 
         detachDatabaseReadListener();
     }
 
+     /**
+      * listener to check for channges to database
+      */
     private void attachDatabaseReadListener() {
         if (mChildEventListener == null) {
             mChildEventListener = new ChildEventListener() {
@@ -256,6 +326,7 @@ public class MainActivity extends AppCompatActivity {
             mMessagesDatabaseReference.addChildEventListener(mChildEventListener);
         }
     }
+
 
     private void detachDatabaseReadListener() {
         if (mChildEventListener != null) {
