@@ -76,6 +76,7 @@
 
     <Button
         android:id="@+id/gs2"
+        style="@style/FirebaseUI.Button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -89,6 +90,7 @@
 
     <Button
         android:id="@+id/btn_add_item2"
+        style="@style/FirebaseUI.Button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

@@ -40,11 +40,12 @@ tools:context=".ITsupport">
 
     <Button
         android:id="@+id/sendButton"
+        style="@style/FirebaseUI.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:enabled="false"
-        android:text="@string/send_button_label"/>
+        android:text="@string/send_button_label" />
 
 </LinearLayout>
 
