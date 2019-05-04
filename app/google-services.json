@@ -15,17 +15,29 @@
       },
       "oauth_client": [
         {
+          "client_id": "481396556193-9ohe58v8smd34hnfbidu3g55nci2pshl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.application1.coys.schoolcomms",
+            "certificate_hash": "aa809bda35ea9de78a01d74208e198a74e8d8b91"
+          }
+        },
+        {
           "client_id": "481396556193-j8d2panpn3nm2qtacaqfmjnvn3gihnj8.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.application1.coys.schoolcomms",
             "certificate_hash": "0681c21210cc9d6442f8c8d6f6b8b2b5c3a979fb"
           }
+        },
+        {
+          "client_id": "481396556193-m5e0c964dlb1v53mk96m34kr7nkfm8tt.apps.googleusercontent.com",
+          "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBq9BLUfVgjcNGd-mUPmIjxjz-3ShNmQDo"
+          "current_key": "AIzaSyBwAjWm5buKCKiw55F3t5gl4Huc4ZdsGiQ"
         }
       ],
       "services": {
