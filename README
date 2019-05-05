@@ -3,8 +3,6 @@ SchoolComms
 
 This app is a communication based app for use in schools.
 
-
-
 Pre-requisites
 --------------
 
@@ -21,7 +19,7 @@ This app uses the Gradle build system. To build this project, use the "gradlew b
 License
 -------
 
-Copyright 2016 Google, Inc.
+Copyright 2019 Google, Inc.
 
 Licensed to the Apache Software Foundation (ASF) under one or more contributor
 license agreements.  See the NOTICE file distributed with this work for
@@ -37,3 +35,14 @@ distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
 WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
 License for the specific language governing permissions and limitations under
 the License.
+
+Citations and Referneces 
+https://firebase.google.com/support/release-notes/android
+https://developers.google.com/gsuite/guides/android
+https://developer.android.com/guide/index.html
+https://developer.android.com/reference
+https://www.crazycodersclub.com/android/how-to-use-google-sheet-as-database-for-android-app-1-insert-operation/
+https://developer.android.com/training/volley/
+https://firebase.google.com/docs/storage/android/upload-files#get_a_download_url
+https://www.google.com/search?q=how+to+add+a+google+sheet+to+app+android+studio&rlz=1C1CAFA_enIE787IE787&oq=how+to+add+a+google+sheet+to+app+android+studio&aqs=chrome..69i57.13582j0j7&sourceid=chrome&ie=UTF-8#kpvalbx=1
+https://stackoverflow.com/questions/25685124/what-is-sha1-fingerprint
